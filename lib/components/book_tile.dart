@@ -76,29 +76,3 @@ class BookTile extends StatelessWidget {
     );
   }
 }
-
-// ListTile(
-//         leading: ClipRRect(
-//           borderRadius: BorderRadius.circular(2),
-//           child: Container(
-//             child: Align(
-//               alignment: Alignment.center,
-//               widthFactor: 0.65,
-//               heightFactor: 0.75,
-//               child: Image.network(book.image),
-//             ),
-//           ),
-//         ),
-//         title: Text(
-//           book.title,
-//           overflow: TextOverflow.ellipsis,
-//           maxLines: 2,
-//           softWrap: true,
-//         ),
-//         subtitle: Text(book.subtitle,
-//             overflow: TextOverflow.ellipsis, maxLines: 3, softWrap: true),
-//         onTap: () {
-//           Navigator.push(context,
-//               MaterialPageRoute(builder: (context) => DetailsScreen(book)));
-//         },
-//       ),

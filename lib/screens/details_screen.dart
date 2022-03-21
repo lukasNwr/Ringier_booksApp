@@ -11,8 +11,6 @@ class DetailsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          elevation: 10,
-          shadowColor: Colors.black.withOpacity(.4),
           backgroundColor: Colors.black,
           foregroundColor: Colors.white,
           title: Text(book.title),
@@ -51,14 +49,12 @@ class BookDetails extends StatelessWidget {
                         padding: const EdgeInsets.all(40),
                         child: Container(
                           child: ClipRRect(
-                            borderRadius: BorderRadius.circular(20),
-                            child: Container(
-                              child: Align(
-                                alignment: Alignment.center,
-                                widthFactor: 0.65,
-                                heightFactor: 0.75,
-                                child: Image.network(_book!.image),
-                              ),
+                            borderRadius: BorderRadius.circular(15),
+                            child: Align(
+                              alignment: Alignment.center,
+                              widthFactor: 0.65,
+                              heightFactor: 0.75,
+                              child: Image.network(_book!.image),
                             ),
                           ),
                           decoration: BoxDecoration(
@@ -66,8 +62,8 @@ class BookDetails extends StatelessWidget {
                               BoxShadow(
                                 color: Colors.black.withOpacity(.25),
                                 spreadRadius: 7,
-                                blurRadius: 21,
-                                offset: const Offset(0, 10),
+                                blurRadius: 23,
+                                offset: const Offset(0, 5),
                               ),
                             ],
                           ),
@@ -85,95 +81,122 @@ class BookDetails extends StatelessWidget {
                             textAlign: TextAlign.center,
                             style: const TextStyle(
                               fontSize: 15,
-                              color: Color.fromRGBO(0, 0, 0, 0.5),
+                              color: Colors.grey,
                             )),
                       ),
                       Padding(
-                        padding: const EdgeInsets.all(10),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                        padding: const EdgeInsets.all(5),
+                        child: Stack(
                           children: [
-                            Column(
-                              children: [
-                                const Text('Rating'),
-                                Text(
-                                  _book!.rating,
-                                  style: const TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 17,
+                            Positioned.fill(
+                              child: Align(
+                                alignment: Alignment.center,
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(10),
+                                  child: Container(
+                                    width: double.infinity,
+                                    color:
+                                        const Color.fromARGB(255, 202, 202, 202)
+                                            .withOpacity(.2),
                                   ),
                                 ),
-                              ],
+                              ),
                             ),
-                            const SizedBox(width: 30),
-                            Column(
-                              children: [
-                                const Text('Pages'),
-                                Text(
-                                  _book.pages,
-                                  style: const TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 17,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            const SizedBox(width: 30),
-                            Column(
-                              children: [
-                                const Text('Language'),
-                                Text(
-                                  _book.language,
-                                  style: const TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 17,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            const SizedBox(width: 30),
-                            Flexible(
-                              child: Column(
-                                children: [
-                                  const Text('Publisher'),
-                                  Text(
-                                    _book.publisher,
-                                    style: const TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 17,
+                            Padding(
+                              padding: const EdgeInsets.all(15),
+                              child: IntrinsicHeight(
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Column(
+                                      children: [
+                                        const Text('Rating'),
+                                        Row(
+                                          children: [
+                                            const Icon(
+                                              Icons.star,
+                                              color: Color.fromARGB(
+                                                  255, 241, 205, 0),
+                                              size: 20,
+                                            ),
+                                            Text(
+                                              '${_book!.rating}/5',
+                                              style: const TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 17,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
                                     ),
-                                    overflow: TextOverflow.ellipsis,
-                                    maxLines: 1,
-                                    softWrap: true,
-                                    textAlign: TextAlign.center,
-                                  ),
-                                ],
+                                    VerticalDivider(
+                                      color: Colors.grey.withOpacity(.5),
+                                      thickness: 2,
+                                    ),
+                                    Column(
+                                      children: [
+                                        const Text('Pages'),
+                                        Text(
+                                          _book.pages,
+                                          style: const TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 17,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    VerticalDivider(
+                                      color: Colors.grey.withOpacity(.5),
+                                      thickness: 2,
+                                    ),
+                                    Column(
+                                      children: [
+                                        const Text('Language'),
+                                        Text(
+                                          _book.language,
+                                          style: const TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 17,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                           ],
                         ),
                       ),
                       Padding(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 9, vertical: 20),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const Text(
-                                'Description',
-                                style: TextStyle(
-                                  fontSize: 25,
-                                  fontWeight: FontWeight.bold,
-                                ),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 9, vertical: 20),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Text(
+                              'Description',
+                              style: TextStyle(
+                                fontSize: 25,
+                                fontWeight: FontWeight.bold,
                               ),
-                              const SizedBox(height: 20),
-                              Text(
-                                _book.desc,
-                                style: const TextStyle(fontSize: 18),
-                              ),
-                            ],
-                          ))
+                            ),
+                            const SizedBox(height: 20),
+                            Text(
+                              _book.desc,
+                              style: const TextStyle(fontSize: 18),
+                            ),
+                            const SizedBox(height: 20),
+                            Text(
+                              'Published by ${_book.publisher} in the ${_book.year}',
+                              style: TextStyle(color: Colors.grey),
+                            ),
+                          ],
+                        ),
+                      )
                     ],
                   ),
                 ),

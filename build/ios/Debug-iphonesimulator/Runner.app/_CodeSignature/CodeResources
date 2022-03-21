@@ -110,7 +110,7 @@
 		</data>
 		<key>Frameworks/App.framework/App</key>
 		<data>
-		46L6KSaZxtmvlawXpmYp1j+4aS4=
+		AJc21991rqhoFKufVtKPrYYvF0A=
 		</data>
 		<key>Frameworks/App.framework/Info.plist</key>
 		<data>
@@ -118,11 +118,11 @@
 		</data>
 		<key>Frameworks/App.framework/_CodeSignature/CodeResources</key>
 		<data>
-		g6lgwgzuRaBghlm3unC87k3iK4s=
+		LvFRzj3uYo4lQsj2WSV+r5pgtBM=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/AssetManifest.json</key>
 		<data>
-		oG5/OGn+vw7vp/nu5DUDoZJ4nFc=
+		HxHy6s1PnHetHGjeka4m7fGvUGg=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/FontManifest.json</key>
 		<data>
@@ -131,6 +131,10 @@
 		<key>Frameworks/App.framework/flutter_assets/NOTICES.Z</key>
 		<data>
 		06W9GFiYNy8gW8vZTxmCDUvO4y8=
+		</data>
+		<key>Frameworks/App.framework/flutter_assets/assets/axel_logo.png</key>
+		<data>
+		wZyprMcaM0fksjJrHag4FcLcInY=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/fonts/MaterialIcons-Regular.otf</key>
 		<data>
@@ -142,7 +146,7 @@
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/kernel_blob.bin</key>
 		<data>
-		DzkaPPTjdI2XkHkk8PtJaICyJIs=
+		VJ07bOVU3/2Uhcj2GZ8zj4QS7Gk=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>
 		<data>
@@ -433,7 +437,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			tZXgXsH3RilVzz71vtON2ojpRVt3AM1afkzAgvFVJyk=
+			eM43oQbICP+Lr/jGwwhgZXdUVg0onfgon9I2U0FWE9Q=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/Info.plist</key>
@@ -447,14 +451,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			BQVvsSAh+lMRF/uTKSqklblJcI9c+mRkhwAKiWs4v70=
+			wyXOHqp9meRQCQUElkKXB6hETVyU047Bo9J0UBl2xBU=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/AssetManifest.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			Sps95+7JukayebvM0TLjL1LW1VXXndpKp/O8tOm9ZR8=
+			OO6zsKVgyRq0g5CiSCfme/VKETT9nWr+LijKQEpVLk4=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/FontManifest.json</key>
@@ -469,6 +473,13 @@
 			<key>hash2</key>
 			<data>
 			CrjORQO4PuEhe4OqJcDRDYXVkqY9RMoFtvZw3Z2am6I=
+			</data>
+		</dict>
+		<key>Frameworks/App.framework/flutter_assets/assets/axel_logo.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			pvVqIvhWAcErAMIB3q4rH0HAcAUsUXc+idmXYmSL/2U=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/fonts/MaterialIcons-Regular.otf</key>
@@ -489,7 +500,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			CzLaoTpGltt+cG9xODi55DDgSRr0K/dgmUc51IZ3OYY=
+			jZq7rP58WgBFCAS+6UQd8nIIJPVVkh9GtjV1NA4XAzA=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>
