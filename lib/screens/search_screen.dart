@@ -33,7 +33,7 @@ class _SearchScreenState extends State<SearchScreen> {
                 const Padding(
                   padding: EdgeInsets.fromLTRB(0, 0, 60, 0),
                   child: Text(
-                    "books app",
+                    "book app",
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 40,
@@ -60,7 +60,7 @@ class _SearchScreenState extends State<SearchScreen> {
                           hintStyle: const TextStyle(color: Colors.grey),
                           prefixIcon: const Icon(
                             Icons.search,
-                            color: Colors.grey,
+                            color: Colors.black,
                           ),
                           suffixIcon: searchString != ""
                               ? IconButton(
