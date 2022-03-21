@@ -5,7 +5,7 @@ import 'package:ringier_books_app/providers/api_provider.dart';
 class DetailsScreen extends StatelessWidget {
   final Book book;
 
-  const DetailsScreen(this.book);
+  DetailsScreen(this.book);
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +47,32 @@ class BookDetails extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Image.network(_book!.image, width: 300),
+                      Padding(
+                        padding: const EdgeInsets.all(40),
+                        child: Container(
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(20),
+                            child: Container(
+                              child: Align(
+                                alignment: Alignment.center,
+                                widthFactor: 0.65,
+                                heightFactor: 0.75,
+                                child: Image.network(_book!.image),
+                              ),
+                            ),
+                          ),
+                          decoration: BoxDecoration(
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withOpacity(.25),
+                                spreadRadius: 7,
+                                blurRadius: 21,
+                                offset: const Offset(0, 10),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Text(book.title,
@@ -56,7 +81,7 @@ class BookDetails extends StatelessWidget {
                       ),
                       Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: Text('by ${_book.authors}',
+                        child: Text('by ${_book?.authors}',
                             textAlign: TextAlign.center,
                             style: const TextStyle(
                               fontSize: 15,
@@ -73,7 +98,7 @@ class BookDetails extends StatelessWidget {
                               children: [
                                 const Text('Rating'),
                                 Text(
-                                  _book.rating,
+                                  _book!.rating,
                                   style: const TextStyle(
                                     fontWeight: FontWeight.bold,
                                     fontSize: 17,
@@ -118,8 +143,8 @@ class BookDetails extends StatelessWidget {
                                       fontWeight: FontWeight.bold,
                                       fontSize: 17,
                                     ),
-                                    overflow: TextOverflow.fade,
-                                    maxLines: 2,
+                                    overflow: TextOverflow.ellipsis,
+                                    maxLines: 1,
                                     softWrap: true,
                                     textAlign: TextAlign.center,
                                   ),
