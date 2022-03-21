@@ -30,7 +30,7 @@ class DetailsScreen extends StatelessWidget {
 class BookDetails extends StatelessWidget {
   final Book book;
 
-  BookDetails(this.book);
+  const BookDetails(this.book);
 
   @override
   Widget build(BuildContext context) {
@@ -42,110 +42,114 @@ class BookDetails extends StatelessWidget {
               return Center(child: Text('Error ${snapshot.error}'));
             } else {
               Book? _book = snapshot.data;
-              return Container(
-                width: MediaQuery.of(context).size.width,
-                child: SingleChildScrollView(
-                  child: Center(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Image.network(_book!.image, width: 300),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(book.title,
-                              style: const TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 25)),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text('by ${_book!.authors}',
-                              textAlign: TextAlign.center,
-                              style: const TextStyle(
-                                fontSize: 15,
-                                color: Color.fromRGBO(0, 0, 0, 0.5),
-                              )),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(10),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Column(
-                                children: [
-                                  Text('Rating'),
-                                  Text(
-                                    _book.rating,
-                                    style: const TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 17,
-                                    ),
+              return SingleChildScrollView(
+                child: Center(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Image.network(_book!.image, width: 300),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(book.title,
+                            style: const TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 25)),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text('by ${_book.authors}',
+                            textAlign: TextAlign.center,
+                            style: const TextStyle(
+                              fontSize: 15,
+                              color: Color.fromRGBO(0, 0, 0, 0.5),
+                            )),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(10),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Column(
+                              children: [
+                                const Text('Rating'),
+                                Text(
+                                  _book.rating,
+                                  style: const TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 17,
                                   ),
-                                ],
-                              ),
-                              SizedBox(width: 30),
-                              Column(
-                                children: [
-                                  Text('Pages'),
-                                  Text(
-                                    _book.pages,
-                                    style: const TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 17,
-                                    ),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(width: 30),
+                            Column(
+                              children: [
+                                const Text('Pages'),
+                                Text(
+                                  _book.pages,
+                                  style: const TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 17,
                                   ),
-                                ],
-                              ),
-                              SizedBox(width: 30),
-                              Column(
-                                children: [
-                                  Text('Language'),
-                                  Text(
-                                    _book.language,
-                                    style: const TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 17,
-                                    ),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(width: 30),
+                            Column(
+                              children: [
+                                const Text('Language'),
+                                Text(
+                                  _book.language,
+                                  style: const TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 17,
                                   ),
-                                ],
-                              ),
-                              SizedBox(width: 30),
-                              Column(
+                                ),
+                              ],
+                            ),
+                            const SizedBox(width: 30),
+                            Flexible(
+                              child: Column(
                                 children: [
-                                  Text('Publisher'),
+                                  const Text('Publisher'),
                                   Text(
                                     _book.publisher,
                                     style: const TextStyle(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 17,
                                     ),
+                                    overflow: TextOverflow.fade,
+                                    maxLines: 2,
+                                    softWrap: true,
+                                    textAlign: TextAlign.center,
                                   ),
                                 ],
                               ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
-                        Padding(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 9, vertical: 20),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                const Text(
-                                  'Description',
-                                  style: TextStyle(
-                                    fontSize: 25,
-                                    fontWeight: FontWeight.bold,
-                                  ),
+                      ),
+                      Padding(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 9, vertical: 20),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const Text(
+                                'Description',
+                                style: TextStyle(
+                                  fontSize: 25,
+                                  fontWeight: FontWeight.bold,
                                 ),
-                                SizedBox(height: 20),
-                                Text(
-                                  _book.desc,
-                                  style: const TextStyle(fontSize: 18),
-                                ),
-                              ],
-                            ))
-                      ],
-                    ),
+                              ),
+                              const SizedBox(height: 20),
+                              Text(
+                                _book.desc,
+                                style: const TextStyle(fontSize: 18),
+                              ),
+                            ],
+                          ))
+                    ],
                   ),
                 ),
               );

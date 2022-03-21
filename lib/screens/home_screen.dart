@@ -29,82 +29,104 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          toolbarHeight: 80,
-          shadowColor: Colors.black.withOpacity(.4),
-          backgroundColor: Colors.white,
-          elevation: 10,
-          title: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10),
-            child: appBarMainArea,
-          ),
-          centerTitle: false,
-          actions: [
-            IconButton(
-              onPressed: () {
-                setState(() {
-                  if (searchIcon.icon == Icons.search) {
-                    searchIcon = Icon(Icons.cancel, color: Colors.black);
-                    appBarMainArea = ListTile(
-                      title: TextField(
-                          cursorColor: Colors.black,
-                          autofocus: true,
-                          onChanged: (value) {
-                            setState(() {
-                              searchString = value;
-                            });
-                          },
-                          decoration: InputDecoration(
-                            hintText: '  Type title or author...',
-                            hintStyle:
-                                TextStyle(color: Colors.black.withOpacity(.5)),
-                            border: InputBorder.none,
+    return GestureDetector(
+      onTap: () => FocusScope.of(context).unfocus(),
+      child: Scaffold(
+        body: CustomScrollView(
+          keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+          slivers: [
+            SliverAppBar(
+              toolbarHeight: 70,
+              backgroundColor: Colors.black,
+              foregroundColor: Colors.white,
+              floating: true,
+              pinned: true,
+              snap: false,
+              centerTitle: false,
+              title: Padding(
+                padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
+                child: Text(
+                  "Search for books",
+                  style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                ),
+              ),
+              bottom: AppBar(
+                toolbarHeight: 60,
+                backgroundColor: Colors.black,
+                foregroundColor: Colors.white,
+                title: ClipRRect(
+                  borderRadius: BorderRadius.circular(10),
+                  child: Container(
+                    width: double.infinity,
+                    height: 40,
+                    color: Colors.white.withOpacity(.8),
+                    child: Center(
+                      child: TextField(
+                        decoration: InputDecoration(
+                          hintText: 'Search for book title or author...',
+                          prefixIcon: Icon(
+                            Icons.search,
+                            color: Colors.black,
                           ),
-                          style: TextStyle(color: Colors.black)),
-                    );
-                  } else {
-                    searchIcon = Icon(Icons.search, color: Colors.black);
-                    appBarMainArea = Text(
-                      "Search for Books",
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 30,
-                        fontWeight: FontWeight.bold,
+                          border: InputBorder.none,
+                        ),
+                        onChanged: (value) {
+                          setState(() {
+                            searchString = value;
+                          });
+                        },
                       ),
-                    );
-                  }
-                });
-              },
-              icon: searchIcon,
-            )
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            SliverList(
+              delegate: SliverChildListDelegate([
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  child: Container(
+                    child: searchString == ""
+                        ? SizedBox(
+                            height: 400,
+                            child: Center(
+                              child: Text(
+                                'Use searchbar for book searching',
+                              ),
+                            ),
+                          )
+                        : FutureBuilder(
+                            future: APIProvider.api.fetchBooks(searchString),
+                            builder:
+                                (context, AsyncSnapshot<List<Book>> snapshot) {
+                              if (snapshot.connectionState ==
+                                  ConnectionState.done) {
+                                if (snapshot.hasError) {
+                                  return Center(
+                                      child: Text('Error: ${snapshot.error}'));
+                                } else {
+                                  return Container(
+                                      padding: EdgeInsets.all(2),
+                                      height:
+                                          MediaQuery.of(context).size.height,
+                                      child: ListView(
+                                          children: snapshot.data!
+                                              .map((book) => BookTile(book))
+                                              .toList()));
+                                }
+                              } else {
+                                return Center(
+                                    child: CircularProgressIndicator());
+                              }
+                            },
+                          ),
+                  ),
+                ),
+              ]),
+            ),
           ],
         ),
-        body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10),
-          child: Container(
-              child: searchString == ""
-                  ? Center(child: Text("Use searchbar for searching the books"))
-                  : FutureBuilder(
-                      future: APIProvider.api.fetchBooks(searchString),
-                      builder: (context, AsyncSnapshot<List<Book>> snapshot) {
-                        if (snapshot.connectionState == ConnectionState.done) {
-                          if (snapshot.hasError) {
-                            return Center(
-                                child: Text('Error: ${snapshot.error}'));
-                          } else {
-                            return Container(
-                                padding: EdgeInsets.all(2),
-                                height: MediaQuery.of(context).size.height,
-                                child: ListView(
-                                    children: snapshot.data!
-                                        .map((book) => BookTile(book))
-                                        .toList()));
-                          }
-                        } else {
-                          return Center(child: CircularProgressIndicator());
-                        }
-                      })),
-        ));
+      ),
+    );
   }
 }
