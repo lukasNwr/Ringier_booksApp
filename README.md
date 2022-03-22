@@ -1,16 +1,8 @@
-# ringier_books_app
+# Ringier Book App
 
-A new Flutter project.
+Simple app for displaying books from [Link IT Bookstore API](https://api.itbook.store/1.0/), made with Flutter framework. The app was made as an entry assignment for ringier axel springer.
 
-## Getting Started
+<img src="/other_resources/video.gif" width=250 style="margin: 1.5vw;">
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
