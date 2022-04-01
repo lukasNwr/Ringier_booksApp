@@ -71,9 +71,11 @@ class BookDetails extends StatelessWidget {
                       ),
                       Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: Text(book.title,
-                            style: const TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 25)),
+                        child: Text(
+                          book.title,
+                          style: const TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 25),
+                        ),
                       ),
                       Padding(
                         padding: const EdgeInsets.all(8.0),
@@ -192,7 +194,7 @@ class BookDetails extends StatelessWidget {
                             const SizedBox(height: 20),
                             Text(
                               'Published by ${_book.publisher} in the ${_book.year}',
-                              style: TextStyle(color: Colors.grey),
+                              style: const TextStyle(color: Colors.grey),
                             ),
                           ],
                         ),

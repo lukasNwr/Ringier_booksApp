@@ -19,16 +19,6 @@ class _ListScreenState extends State<ListScreen> {
   final Book book = Book(title: "test book");
   final textController = TextEditingController();
 
-  Icon searchIcon = Icon(Icons.search, color: Colors.black);
-  Widget appBarMainArea = Text(
-    "Search for Books",
-    style: TextStyle(
-      color: Colors.black,
-      fontSize: 30,
-      fontWeight: FontWeight.bold,
-    ),
-  );
-
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
