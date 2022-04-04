@@ -8,10 +8,9 @@ class APIProvider {
 
   APIProvider._();
 
-  Future<List<Book>> fetchBooks(String searchString) async {
-    String url = 'https://api.itbook.store/1.0/search/?';
-
-    url += 'q=$searchString';
+  Future<List<Book>> fetchBooks(String searchString, int pageNumber) async {
+    String url =
+        'https://api.itbook.store/1.0//search/$searchString/$pageNumber';
 
     print('url: ' + url);
 

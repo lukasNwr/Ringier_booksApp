@@ -18,6 +18,16 @@ class ListScreen extends StatefulWidget {
 class _ListScreenState extends State<ListScreen> {
   final Book book = Book(title: "test book");
   final textController = TextEditingController();
+  final scrollController = ScrollController();
+  late int pageNumber;
+  late List<Book> bookList;
+
+  @override
+  void initState() {
+    super.initState();
+    pageNumber = 1;
+    bookList = [];
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -103,8 +113,8 @@ class _ListScreenState extends State<ListScreen> {
                             ),
                           )
                         : FutureBuilder(
-                            future:
-                                APIProvider.api.fetchBooks(widget.searchString),
+                            future: APIProvider.api
+                                .fetchBooks(widget.searchString, pageNumber),
                             builder:
                                 (context, AsyncSnapshot<List<Book>> snapshot) {
                               if (snapshot.connectionState ==
@@ -113,14 +123,48 @@ class _ListScreenState extends State<ListScreen> {
                                   return Center(
                                       child: Text('Error: ${snapshot.error}'));
                                 } else {
-                                  return Container(
-                                      padding: EdgeInsets.all(2),
-                                      height:
-                                          MediaQuery.of(context).size.height,
-                                      child: ListView(
-                                          children: snapshot.data!
-                                              .map((book) => BookTile(book))
-                                              .toList()));
+                                  var currentList = List.from(bookList)
+                                    ..addAll(snapshot.data!);
+
+                                  return Column(
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.fromLTRB(
+                                            0, 10, 0, 0),
+                                        child: TextButton.icon(
+                                          onPressed: () {
+                                            setState(() {
+                                              pageNumber++;
+                                              bookList.addAll(snapshot.data!);
+                                            });
+                                            scrollController.jumpTo(
+                                                scrollController
+                                                    .position.maxScrollExtent);
+                                            print(bookList.length);
+                                            print(snapshot.data!.length);
+                                          },
+                                          icon: Icon(Icons.add, size: 15),
+                                          label: Text('Load more books'),
+                                        ),
+                                      ),
+                                      Container(
+                                        transform: Matrix4.translationValues(
+                                            0, -20, 0),
+                                        child: ListView.builder(
+                                            reverse: true,
+                                            scrollDirection: Axis.vertical,
+                                            shrinkWrap: true,
+                                            itemCount: snapshot.data!.length +
+                                                bookList.length,
+                                            controller: scrollController,
+                                            itemBuilder: (BuildContext context,
+                                                int index) {
+                                              return BookTile(
+                                                  currentList[index]);
+                                            }),
+                                      ),
+                                    ],
+                                  );
                                 }
                               } else {
                                 return Center(
